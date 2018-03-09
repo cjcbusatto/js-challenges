@@ -14,7 +14,9 @@
  * 
  * @returns {Number} Rounded number
  */
-module.exports.round = function (n, places = 0) {}
+module.exports.round = function (n, places = 0) {
+	return parseInt(Math.round(n).toFixed(places), 10);
+}
 
 
 /**
@@ -32,7 +34,18 @@ module.exports.round = function (n, places = 0) {}
  * 
  * @returns {Array} Returns the merge of all arrays
  */
-module.exports.arrayMerge = function (...arr) {}
+module.exports.arrayMerge = function (...arr) {
+	let arrayMerged = [];
+	for(let i=0; i<arr.length; i++){
+		arrayMerged = arrayMerged.concat(arr[i]);
+		
+		if(i+1 == arr.length){
+			return arrayMerged;
+		}
+	}
+
+	
+}
 
 
 /**
@@ -51,7 +64,13 @@ module.exports.arrayMerge = function (...arr) {}
  * 
  * @return {Number} The sum of all items in the array
  */
-module.exports.arraySum = function (arr) {}
+module.exports.arraySum = function (arr) {
+	const add = (val1, val2) => {
+		return val1 + val2
+	};
+	
+	return arr.reduce(add);
+}
 
 
 /**
@@ -70,7 +89,14 @@ module.exports.arraySum = function (arr) {}
  * 
  * @returns {Object} The start object
  */
-module.exports.objectForEach = function (obj, callback) {}
+module.exports.objectForEach = function (obj, callback) {
+	for (item in obj) {
+		callback(item.key, item.value);
+	}
+	
+	return obj;
+}
+
 
 
 /**
@@ -88,7 +114,9 @@ module.exports.objectForEach = function (obj, callback) {}
  * 
  * @returns {String} String reversed.
  */
-module.exports.reverseString = function (str) {}
+module.exports.reverseString = function (str) {
+	return str.split("").reverse().join("")
+}
 
 
 /**
@@ -106,7 +134,10 @@ module.exports.reverseString = function (str) {}
  * 
  * @returns {Boolean} Return true if is a palindrome.
  */
-module.exports.isPalindrome = function (str) {}
+module.exports.isPalindrome = function (str) {
+	let reversedString = str.split("").reverse().join("")
+	return reversedString === str
+}
 
 
 /**
@@ -125,7 +156,9 @@ module.exports.isPalindrome = function (str) {}
  * 
  * @returns {Boolean} If `a` is multiple of `b` returns true
  */
-module.exports.isMultipleOf = function (a, b) {}
+module.exports.isMultipleOf = function (a, b) {
+	return b % a > 0
+}
 
 
 /**
@@ -143,7 +176,15 @@ module.exports.isMultipleOf = function (a, b) {}
  * 
  * @returns {String} Returns the longest word of `str`
  */
-module.exports.longestWord = function (str) {}
+module.exports.longestWord = function (str) {
+	const words = str.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"").split(" ")
+
+	words.sort((val1, val2) => {
+		return val2.length - val1.length;
+	})
+
+	return words[0]
+}
 
 
 /**
@@ -161,7 +202,16 @@ module.exports.longestWord = function (str) {}
  * 
  * @returns {String} Returns a capitalized string
  */
-module.exports.capitalize = function (str) {}
+module.exports.capitalize = function (str) {
+	let words = str.split(" ");
+	
+	words = words.map((val) => {
+		return val[0].toUpperCase() + val.substr(1, val.length - 1);
+	});
+
+	return words.toString();
+
+}
 
 
 
@@ -180,7 +230,18 @@ module.exports.capitalize = function (str) {}
  * 
  * @returns {Number} Returns number of vowels in `str`
  */
-module.exports.vowelCount = function (str) {}
+module.exports.vowelCount = function (str) {
+	vowelCounter = str.map((val) => {
+		if(val === 'a' || val === 'e' || val === 'i' || val === 'o' || val === 'u')
+			return 1;
+		else
+			return 0;
+	}).reduce((val1, val2) => {
+		return val1 + val2;
+	});
+
+	console.log(vowelCounter)
+}
 
 
 
